@@ -9,22 +9,28 @@ resource "azurerm_resource_group" "workshop" {
 }
 
 resource "azurerm_kubernetes_cluster" "workshop" {
-  name                = "workshop"
-  location            = "eastus"
-  resource_group_name = "workshop"
-  dns_prefix          = "workshop"
+    name = "workshop"
+    location = azurerm_resource_group.workshop.location
+    resource_group_name = azurerm_resource_group.workshop.name
+    dns_prefix = "workshop"
+    default_node_pool {
+        name = "default"
+        node_count = 2
+        vm_size = "Standard_D2pls_v5"
+    }
+    identity {
+      type = "SystemAssigned"
+    }
 
-  default_node_pool {
-    name       = "agentpool"
-    vm_size    = "Standard_D2pls_v5"  # Update the VM size here
-    node_count = 3
-  }
-
-  identity {
-    type = "SystemAssigned"
-  }
+    depends_on = [
+    azurerm_resource_group.workshop
+  ] 
+    tags = {
+      Environment = "qa"
+      Application = "workshop"
+      Createdby = "terraform"
+    }
 }
-
 
 resource "null_resource" "kubeconfig" {
     provisioner "local-exec" {

@@ -34,10 +34,11 @@ kind: Service
 metadata:
   name: my-app-blue
 spec:
+  type: LoadBalancer
   selector:
     app: my-app
     version: blue
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 32000
