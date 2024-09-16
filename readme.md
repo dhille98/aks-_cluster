@@ -12,17 +12,19 @@
     curl -fsSL https://get.docker.com -o get-docker.sh
     sh get-docker.sh
     sudo usermod -aG docker <username>
+``` 
+
+```sh
+  docker image pull longflew/ingress:BLUEPAGE
+  docker image pull longflew/ingress:GREENPAGE
+
+  docker tag longflew/ingress:BLUEPAGE <repo_name:image>
+
+  docker tag longflew/ingress:GREENPAGE <repo_name:image>
+
+  docker push shiva.azurecr.io/longflew/ingress:BLUEPAGE
+  docker push shiva.azurecr.io/longflew/ingress:GREENPAGE
 ```
-docker image pull longflew/ingress:BLUEPAGE
-docker image pull longflew/ingress:GREENPAGE
-
-docker tag longflew/ingress:BLUEPAGE <repo_name:image>
-
-docker tag longflew/ingress:GREENPAGE <repo_name:image>
-
-docker push shiva.azurecr.io/longflew/ingress:BLUEPAGE
-docker push shiva.azurecr.io/longflew/ingress:GREENPAGE
-
 
 * create image pull secretes 
 ```
