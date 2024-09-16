@@ -1,19 +1,23 @@
-# blue-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-app-ingress
+  name: hello-world
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
-  - host: myapp.example.com
+  - host: "example.com"
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: my-app-blue
+            name: my-app-green
             port:
               number: 80
+
+
+# kubectl patch service my-app-service -p '{"spec":{"selector":{"environment":"green"}}}
+

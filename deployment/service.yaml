@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-blue
+  
+spec:
+  type: NodePort
+  selector:
+    app: my-app
+    version: blue # change the image version blue/green
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80 # Port on the Node.js container
+    nodePort: 30080

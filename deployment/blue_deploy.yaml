@@ -1,19 +1,23 @@
-# blue-deployment.yaml
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-blue
+  name: app-blue
+  labels:
+    app: my-app
+    environment: blue
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: my-app
-      version: blue
+      environment: blue
   template:
     metadata:
       labels:
         app: my-app
-        version: blue
+        environment: blue
     spec:
       containers:
       - name: my-app
@@ -27,18 +31,9 @@ spec:
           limits:
             cpu: 200m
             memory: 256Mi
-
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-app-blue
-spec:
-  type: LoadBalancer
-  selector:
-    app: my-app
-    version: blue
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 32000
+
+
+
+
+ 

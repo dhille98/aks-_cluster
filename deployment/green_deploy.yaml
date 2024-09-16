@@ -27,16 +27,3 @@ spec:
           limits:
             cpu: 200m
             memory: 256Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-app-green
-  type: LoadBalancer
-  selector:
-    app: my-app
-    version: blue
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 32500

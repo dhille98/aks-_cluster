@@ -16,7 +16,7 @@ resource "azurerm_kubernetes_cluster" "workshop" {
     default_node_pool {
         name = "default"
         node_count = 2
-        vm_size = "Standard_D2pls_v5"
+        vm_size = "Standard_D8ds_v5"
     }
     identity {
       type = "SystemAssigned"
